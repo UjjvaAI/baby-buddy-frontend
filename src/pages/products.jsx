@@ -1,9 +1,9 @@
 // src/pages/Products.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import RideOnSlide from "../components/slides/RideOnSlide";
-import FrockSlide from "../components/slides/FrockSlide";
-import CradleSlide from "../components/slides/cradleslide";
+import RideOnSlide from "../components/slide/RideonSlide";
+import FrockSlide from "../components/slide/FrockSlide";
+import CradleSlide from "../components/slide/cradleslide";
 import ProductOptionsModal from "../components/ProductOptionsModal";
 import { useCart } from "../context/CartContext";
 import Categories from "../components/Categories";

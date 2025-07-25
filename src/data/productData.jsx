@@ -1,7 +1,7 @@
 // src/data/productData.jsx
-import RideOnSlide from "../components/slides/RideOnSlide";
-import FrockSlide from "../components/slides/FrockSlide";
-import CradleSlide from "../components/slides/cradleslide";
+import RideOnSlide from "../components/slide/RideonSlide";
+import FrockSlide from "../components/slide/FrockSlide";
+import CradleSlide from "../components/slide/cradleslide";
 
 
 
