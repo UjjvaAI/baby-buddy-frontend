@@ -1,7 +1,7 @@
 // src/pages/Products.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import RideOnSlide from "../components/slide/RideonSlide";
+import RideOnSlide from "../components/slides/RideonSlide";
 import FrockSlide from "../components/slides/FrockSlide";
 import CradleSlide from "../components/slides/cradleslide";
 import ProductOptionsModal from "../components/ProductOptionsModal";
