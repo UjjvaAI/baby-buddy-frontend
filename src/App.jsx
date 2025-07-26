@@ -16,10 +16,10 @@ import OrderHistory from "./pages/OrderHistory";
 import UserDetails from "./pages/UserDetails";
 import ThankYou from "./pages/ThankYou";
 import AdminOrders from "./pages/AdminOrders";
+import { Navigate } from "react-router-dom";
 
 
-
-
+ const user = JSON.parse(localStorage.getItem("user"));
 
 const App = () => {
   return (
@@ -76,6 +76,20 @@ const App = () => {
             </PrivateRoute>
           }
         />
+       
+
+<Route
+  path="/admin/orders"
+  element={
+    user?.uid === "llBIqhEd4GW5ysxNxeOuXnbSAbc2" ? (
+      <AdminOrders />
+    ) : (
+      <Navigate to="/" />
+    )
+  }
+/>
+
+      
 
         <Route path="seller-dashboard" element={<SellerDashboard />} />
       </Route>
