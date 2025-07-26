@@ -13,6 +13,7 @@ const AdminOrders = () => {
   const user = JSON.parse(localStorage.getItem("user")); // or get from context
 
   useEffect(() => {
+     const user = JSON.parse(localStorage.getItem("user"));
     if (!user || user.uid !== ADMIN_UID) {
       alert("❌ Access denied");
       navigate("/");
