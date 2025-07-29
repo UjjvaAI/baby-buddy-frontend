@@ -15,7 +15,7 @@ const categories = [
 
 const Categories = ({ selected, onSelect }) => {
   return (
-    <div className="overflow-x-auto whitespace-nowrap py-2 px-4 bg-white shadow-sm">
+    <div className="overflow-x-auto whitespace-nowrap py-2 px-2 bg-white shadow-sm">
       <div className="inline-flex gap-2">
         {categories.map((cat) => (
           <button

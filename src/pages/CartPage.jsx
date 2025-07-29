@@ -13,7 +13,7 @@ const CartPage = () => {
     <div className="p-4 max-w-2xl mx-auto">
       <div className="flex items-center justify-center "> <span className="inline-block bg-blue-100 text-center text-sm md:text-lg lg:text-2xl font-bold text-blue-600">
     Your Cart
-  </span></div>
+  </span></div> 
 
       {cartItems.length === 0 ? (
         <p className="text-gray-500">🛒 Your cart is empty.</p>

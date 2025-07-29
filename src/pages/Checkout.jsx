@@ -1,13 +1,15 @@
 // src/pages/Checkout.jsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCart } from "../context/CartContext";
 import axios from "axios";
 import { db } from "../firebase";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { addDoc, collection, Timestamp, doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext"; // ✅ Make sure you have this
 
 const Checkout = () => {
   const { cartItems } = useCart();
+  const { user,} = useUser(); // ✅ Authenticated user
   const navigate = useNavigate();
 
   const [customer, setCustomer] = useState({
@@ -16,6 +18,31 @@ const Checkout = () => {
     address: "",
     locationLink: "",
   });
+
+  // ✅ Auto-fill from Firestore user profile
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (user) {
+        try {
+          const ref = doc(db, "users", user.uid);
+          const snap = await getDoc(ref);
+          if (snap.exists()) {
+            const data = snap.data();
+            setCustomer((prev) => ({
+              ...prev,
+              name: data.name || "",
+              whatsapp: data.phone || "",
+              address: data.address || "",
+            }));
+          }
+        } catch (err) {
+          console.error("❌ Failed to load profile:", err.message);
+        }
+      }
+    };
+
+    fetchProfile();
+  }, [user]);
 
   const total = cartItems.reduce((sum, item) => sum + Number(item.price), 0);
 
@@ -66,7 +93,7 @@ const Checkout = () => {
       const { id: order_id, amount, currency } = result.data;
 
       const options = {
-        key: "rzp_test_QiKijVWMDejYPS", // 🔁 Replace with your actual test key
+        key: "rzp_test_QiKijVWMDejYPS",
         amount,
         currency,
         name: "Baby Buddy Store",
@@ -74,32 +101,30 @@ const Checkout = () => {
         order_id,
         handler: async function (response) {
           try {
-             const cleanCartItems = cartItems.map(item => ({
-      name: item.name,
-      price: item.price,
-      // Add other primitive fields if needed (like quantity, id, etc.)
-    }));
+            const cleanCartItems = cartItems.map(item => ({
+              name: item.name,
+              price: item.price,
+            }));
 
-      const cleanCustomer = {
-      name: customer.name,
-      whatsapp: customer.whatsapp,
-      address: customer.address,
-      locationLink: customer.locationLink,
-    };
+            const cleanCustomer = {
+              name: customer.name,
+              whatsapp: customer.whatsapp,
+              address: customer.address,
+              locationLink: customer.locationLink,
+            };
 
-      const orderData = {
-      customer: cleanCustomer,
-      cartItems: cleanCartItems,
-      total,
-      razorpayPaymentId: response.razorpay_payment_id,
-      razorpayOrderId: response.razorpay_order_id,
-      razorpaySignature: response.razorpay_signature,
-      createdAt: Timestamp.now(),
-    };
+            const orderData = {
+              customer: cleanCustomer,
+              cartItems: cleanCartItems,
+              total,
+              razorpayPaymentId: response.razorpay_payment_id,
+              razorpayOrderId: response.razorpay_order_id,
+              razorpaySignature: response.razorpay_signature,
+              createdAt: Timestamp.now(),
+            };
 
-             console.log("✅ OrderData:", orderData);
-             await addDoc(collection(db, "orders"), orderData);
-             
+            console.log("✅ OrderData:", orderData);
+            await addDoc(collection(db, "orders"), orderData);
 
             alert("✅ Order & Payment Successful!");
             navigate("/thank-you");
@@ -127,8 +152,10 @@ const Checkout = () => {
   };
 
   return (
-    <div className="p-4 max-w-2xl mx-auto">
-      <h2 className="text-center text-2xl font-bold text-blue-600 mb-4">🧾 Checkout</h2>
+    <div className="p-2 max-w-2xl mx-auto">
+      <h2 className="flex items-center justify-center w-full text-2xl font-bold text-center text-pink-600 ml-1 mt-4 mb-6">
+        🧾 Checkout
+      </h2>
 
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>

@@ -17,7 +17,7 @@ const Navbar = () => {
     <nav className="bg-pink-200 shadow-lg px-2 py-2 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="text-sm md:text-xl lg:text-2xl font-bold text-pink-600">
+        <Link to="/" className="text-xs md:text-sm lg:text-md font-bold text-pink-600">
           👶 BabyBuddy
         </Link>
 
@@ -28,7 +28,7 @@ const Navbar = () => {
           {!user ? (
             <>
               <Link to="/login" className="text-gray-700 hover:text-pink-600">Login</Link>
-              <Link to="/register" className="text-gray-700 hover:text-pink-600">Register</Link>
+            
             </>
           ) : (
             <Link to="/profile">
@@ -43,7 +43,7 @@ const Navbar = () => {
         </div>
 
         {/* Hamburger Button */}
-        <button className="md:hidden text-2xl text-pink-600" onClick={() => setIsOpen(!isOpen)}>
+        <button className="md:hidden text-md font-bold text-pink-600" onClick={() => setIsOpen(!isOpen)}>
           ☰
         </button>
       </div>
@@ -79,9 +79,7 @@ const Navbar = () => {
         <Link to="/login" onClick={handleLinkClick} className="block text-gray-700">
           Login
         </Link>
-        <Link to="/register" onClick={handleLinkClick} className="block text-gray-700">
-          Register
-        </Link>
+       
       </>
     )}
   </div>

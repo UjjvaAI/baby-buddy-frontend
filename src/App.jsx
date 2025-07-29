@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
 import CartPage from "./pages/CartPage";
 import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
@@ -17,6 +16,13 @@ import UserDetails from "./pages/UserDetails";
 import ThankYou from "./pages/ThankYou";
 import AdminOrders from "./pages/AdminOrders";
 import { Navigate } from "react-router-dom";
+import EmailLinkSignIn from "./pages/EmailLinkSignIn";
+import FinishSignIn from "./pages/finishSignIn";
+
+
+
+
+
 
 
  const user = JSON.parse(localStorage.getItem("user"));
@@ -27,13 +33,18 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
         <Route path="cart" element={<CartPage />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="product/:slug" element={<ProductDetail />} />
         <Route path="/user-details" element={<UserDetails />} />
         <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/admin/orders" element={<AdminOrders />} />
+         <Route path="/" element={<EmailLinkSignIn />} />
+        <Route path="/finishSignIn" element={<FinishSignIn />} />
+       
+       
+       
+       
         {/* ✅ Protected routes */}
         <Route
           path="profile"

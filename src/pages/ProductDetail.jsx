@@ -19,13 +19,13 @@ const [selectedSize, setSelectedSize] = useState("");
   }
 
   const handleAddToCart = () => {
-    if (!selectedColor || !selectedSize) return alert("Please select a color first");
+    if (!selectedColor || !selectedSize) return alert("Please select a color and size first");
     addToCart({ ...product, selectedColor, selectedSize,quantity: 1 });
     alert("Added to cart!");
   };
 
   const handleBuyNow = () => {
-    if (!selectedColor || !selectedSize) return alert("Please select a color first");
+    if (!selectedColor || !selectedSize) return alert("Please select a color and size first");
     addToCart({ ...product, selectedColor, selectedSize, quantity: 1 });
     navigate("/checkout");
   };
@@ -82,7 +82,7 @@ const [selectedSize, setSelectedSize] = useState("");
 
 
 
-      <p className="text-gray-700 mb-2">{product.description}</p>
+      <p className="text-gray-700 mb-2"><span className="text-blue-600 font-bold">Description:-</span> {product.description}</p>
       <p className="text-pink-600 text-sm md:text-lg lg:text-2xl font-bold line-through mb-1">MRP ₹{product.mrp}</p>
       <p className="text-green-600 font-bold text-xl mb-4">Offer Price ₹{product.price}</p>
 

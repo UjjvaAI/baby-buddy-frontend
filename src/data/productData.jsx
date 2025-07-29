@@ -2,6 +2,9 @@
 import RideOnSlide from "../components/slides/RideOnSlide";
 import FrockSlide from "../components/slides/FrockSlide";
 import CradleSlide from "../components/slides/cradleslide";
+import Cradle603 from "../components/slides/cradle603";
+import Cradle730 from "../components/slides/cradle730";
+import Cradlecv1100 from "../components/slides/cradlecv1100";
 
 
 
@@ -36,11 +39,42 @@ const productData = {
       mrp: 9999,
       price: 7999,
       description: "Comfortable cradle for your baby with adjustable height.",
-      colors: ["Pink", "White", "Sky Blue"],
+      colors: ["Pink", "Sky Blue"],
       sizes: ["0-18m"],
       imageSlider: <CradleSlide />,
   },
+  cradle603: {
+    id: "cradle603",
+    name: "Cradle 603",
+    mrp: 4000,
+    price: 2999,
+    description: "Stylish and sturdy cradle with a modern design.",
+    colors: ["blue", "Pink"],
+    sizes: ["0-24m"],
+    imageSlider: <Cradle603 />,
+  },
 
+  cradle730: {
+    id: "cradle730",
+    name: "Cradle 730",
+    mrp: 4000,
+    price: 3999,
+    description: "Elegant cradle with a soothing rocking feature.",
+    colors: ["blue", "pink"],
+    sizes: ["0-18m"],
+    imageSlider: <Cradle730 />,
+  },
+
+  cradlecv1100: {
+    id: "cradlecv1100",
+    name: "Cradle CV1100",
+    mrp: 4000,
+    price: 2999,
+    description : "Premium cradle with a classic design and comfortable padding.",
+    colors: ["blue", "pink"],
+    sizes: ["0-18m"],
+    imageSlider: <Cradlecv1100 />,
+  },
 
 
 

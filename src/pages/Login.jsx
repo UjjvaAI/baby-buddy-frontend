@@ -1,24 +1,30 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase"; // make sure this is correct path
+import { useNavigate } from "react-router-dom";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../firebase"; // ✅ Adjust if needed
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setError("");
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      alert("Login successful!");
-      navigate("/"); // or navigate("/dashboard") etc.
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // ✅ Save to localStorage
+      localStorage.setItem("user", JSON.stringify({
+        uid: user.uid,
+        email: user.email,
+        name: user.displayName,
+      }));
+
+      alert(`✅ Welcome, ${user.displayName || user.email}!`);
+      navigate("/");
     } catch (err) {
-      console.error("Login failed:", err.message);
+      console.error("Google login failed:", err.message);
       setError(err.message);
     }
   };
@@ -30,47 +36,15 @@ const Login = () => {
           👶 Baby Buddy Login
         </h2>
 
-        <form className="space-y-4" onSubmit={handleLogin}>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
-              required
-            />
-          </div>
+        {error && <p className="text-red-500 text-sm mb-4 text-center">{error}</p>}
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
-              required
-            />
-          </div>
-
-          {error && <p className="text-red-500 text-sm">{error}</p>}
-
-          <button
-            type="submit"
-            className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-          >
-            Log In
-          </button>
-        </form>
-
-        <div className="text-center mt-4 text-sm text-gray-600">
-          Don’t have an account?{" "}
-          <Link to="/register" className="text-pink-600 hover:underline">
-            Register
-          </Link>
-        </div>
+        <button
+          onClick={handleGoogleLogin}
+          className="w-full flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
+        >
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" />
+          Login with Google
+        </button>
       </div>
     </div>
   );
