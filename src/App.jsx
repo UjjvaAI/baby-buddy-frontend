@@ -38,7 +38,7 @@ const App = () => {
         <Route path="product/:slug" element={<ProductDetail />} />
         <Route path="/user-details" element={<UserDetails />} />
         <Route path="/thank-you" element={<ThankYou />} />
-        <Route path="/admin/orders" element={<AdminOrders />} />
+        <Route path="admin/orders" element={<AdminOrders />} />
          <Route path="/" element={<EmailLinkSignIn />} />
         <Route path="/finishSignIn" element={<FinishSignIn />} />
        
@@ -90,7 +90,7 @@ const App = () => {
        
 
 <Route
-  path="/admin/orders"
+  path="admin/orders"
   element={
     user?.uid === "llBIqhEd4GW5ysxNxeOuXnbSAbc2" ? (
       <AdminOrders />
