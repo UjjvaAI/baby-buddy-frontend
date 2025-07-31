@@ -99,10 +99,6 @@ const App = () => {
     )
   }
 />
-
-      
-
-        <Route path="seller-dashboard" element={<SellerDashboard />} />
       </Route>
     </Routes>
   );
