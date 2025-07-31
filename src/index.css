@@ -9,6 +9,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 
+
+
+
 html {
   scroll-behavior: smooth;
 }
@@ -206,5 +209,6 @@ body {
   font-size: 190px;
   font-family: "Bebas Neue", sans-serif;
 }
+
 
 

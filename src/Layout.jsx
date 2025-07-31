@@ -9,9 +9,9 @@ const Layout = () => {
     <div className="min-h-screen flex flex-col bg-gray-50 text-black">
       
       {/* Sticky Marquee + Navbar */}
-      <header className="sticky top-0 z-50">
+      <header className="sticky top-0 z-50 mt-0">
         <div className="bg-black">
-          <p className="text-green-400 font-bold text-center text-xs md:text-sm lg:text-base py-1 animate-marquee whitespace-nowrap overflow-hidden">
+          <p className="text-green-400 font-bold text-center text-xs md:text-sm lg:text-base animate-marquee overflow-hidden">
             🛍️ Visit our store for exciting baby offers!
           </p>
         </div>
