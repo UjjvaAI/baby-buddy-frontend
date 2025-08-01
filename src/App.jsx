@@ -8,7 +8,6 @@ import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
 import Notes from "./components/Notes";
 import PlaceOrder from "./components/PlaceOrder";
-import SellerDashboard from "./components/SellerDashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/Profile";
 import OrderHistory from "./pages/OrderHistory";
@@ -18,6 +17,12 @@ import AdminOrders from "./pages/AdminOrders";
 import { Navigate } from "react-router-dom";
 import EmailLinkSignIn from "./pages/EmailLinkSignIn";
 import FinishSignIn from "./pages/finishSignIn";
+import ContactUs from "./pages/ContactUs";
+import ShippingPolicy from "./pages/ShippingPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import RefundPolicy from "./pages/RefundPolicy";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+
 
 
 
@@ -31,6 +36,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        <Route path="contact" element={<ContactUs />} />
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="cart" element={<CartPage />} />
@@ -41,8 +47,10 @@ const App = () => {
         <Route path="/admin/orders" element={<AdminOrders />} />
          <Route path="/" element={<EmailLinkSignIn />} />
         <Route path="/finishSignIn" element={<FinishSignIn />} />
-       
-       
+  <Route path="shipping-policy" element={<ShippingPolicy />} />
+  <Route path="terms" element={<TermsAndConditions />} />
+  <Route path="refund-policy" element={<RefundPolicy />} />
+  <Route path="privacy-policy" element={<PrivacyPolicy />} />
        
        
         {/* ✅ Protected routes */}
