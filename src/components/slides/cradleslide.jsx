@@ -1,34 +1,33 @@
-// src/components/slides/RideOnSlide.jsx
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 
-import ZoomableImage from "./ZoomableImage";
+import ZoomableImage from "../ZoomableImage";
+
 
 import cradle from "../../assets/products/cradle/images/cradle.png";
 
-const cradleImages = [cradle];
+const cradleImages = [cradle];  // Can add more images here
 
+function CradleSlide({ imageClass = "w-full h-48" }) {
+  const isLoopEnabled = cradleImages.length > 1;
+  const isAutoplayEnabled = cradleImages.length > 1;
 
-
-function CradleSlide ({ imageClass = "w-full h-48" }) {
   return (
     <Swiper
       modules={[Autoplay, Pagination]}
       spaceBetween={10}
       slidesPerView={1}
-      loop={true}
-      autoplay={{ delay: 3000, disableOnInteraction: false }}
-      pagination={{ clickable: true }}
+      loop={isLoopEnabled}
+      autoplay={isAutoplayEnabled ? { delay: 3000, disableOnInteraction: false } : false}
+      pagination={isLoopEnabled ? { clickable: true } : false}
       className="rounded-lg"
     >
       {cradleImages.map((img, index) => (
         <SwiperSlide key={index}>
           <ZoomableImage
             src={img}
-            alt={`cradle ${index + 1}`}
+            alt={`Cradle ${index + 1}`}
             className={`${imageClass} object-contain p-1 bg-white rounded-lg transition duration-300`}
           />
         </SwiperSlide>

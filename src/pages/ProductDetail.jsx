@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import productData from "../data/productData"; 
-
+import ProductSupportBox from "../components/ProductSupportBox";
 
 const ProductDetail = () => {
   const { slug } = useParams();
@@ -31,17 +31,30 @@ const [selectedSize, setSelectedSize] = useState("");
   };
 
   return (
-    <section className="p-2 md:p-6 max-w-4xl mx-auto">
-      <h1 className="text-sm md:text-2xl lg:text-4xl font-bold mb-4 text-center">{product.name}</h1>
-        
-        
-        <div className="mb-4">
+    
+    <section className="p-2 md:p-6 max-w-4xl mx-auto space-y-4">
+       <div className="mt-2 mb-2">
   {product.imageSlider ? (
     product.imageSlider
   ) : (
     <p className="text-red-600">No imageSlider found!</p>
   )}
+  
 </div>
+
+      
+       <div className="bg-white p-4 rounded-xl shadow-md text-sm space-y-2"></div>
+      <h1 className="text-sm md:text-2xl lg:text-4xl font-bold mb-4 text-center">{product.name}</h1>
+        <ul className="list-disc list-inside space-y-1 text-gray-700">
+     {product.description.map((item, index) => (
+    <li key={index}>
+      <b>{item.title}:</b> {item.content}
+    </li>
+  ))}
+  </ul>
+  <ProductSupportBox />
+        
+      
 
 
    
@@ -82,15 +95,14 @@ const [selectedSize, setSelectedSize] = useState("");
 
 
 
-      <p className="text-gray-700 mb-2"><span className="text-blue-600 font-bold">Description:-</span> {product.description}</p>
       <p className="text-pink-600 text-sm md:text-lg lg:text-2xl font-bold line-through mb-1">MRP ₹{product.mrp}</p>
       <p className="text-green-600 font-bold text-xl mb-4">Offer Price ₹{product.price}</p>
 
       <button
         onClick={handleAddToCart}
-        disabled={!selectedColor}
+        disabled={!selectedColor || !selectedSize}
         className={`mr-2 px-6 py-2 rounded ${
-          selectedColor
+          selectedColor && selectedSize
             ? "bg-blue-600 text-white"
             : "bg-gray-400 text-white cursor-not-allowed"
         }`}
@@ -99,9 +111,9 @@ const [selectedSize, setSelectedSize] = useState("");
       </button>
       <button
         onClick={handleBuyNow}
-        disabled={!selectedColor}
+        disabled={!selectedColor || !selectedSize}
         className={`px-6 py-2 rounded ${
-          selectedColor
+          selectedColor && selectedSize
             ? "bg-green-600 text-white"
             : "bg-gray-400 text-white cursor-not-allowed"
             

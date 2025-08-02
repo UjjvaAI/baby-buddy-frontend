@@ -5,7 +5,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import ZoomableImage from "./ZoomableImage";
+import ZoomableImage from "../ZoomableImage";
 
 import cradle01 from "../../assets/products/cradle730/images/cradle01.png";
 import cradle02 from "../../assets/products/cradle730/images/cradle02.png";

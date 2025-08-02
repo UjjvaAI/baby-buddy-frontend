@@ -4,7 +4,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import ZoomableImage from "./ZoomableImage";
+import ZoomableImage from "../ZoomableImage";
 
 import rideon1 from "../../assets/products/rideon/images/rideon1.png";
 import rideon2 from "../../assets/products/rideon/images/rideon2.png";

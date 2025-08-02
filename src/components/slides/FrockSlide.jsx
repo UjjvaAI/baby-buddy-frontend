@@ -5,7 +5,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import ZoomableImage from "./ZoomableImage";
+import ZoomableImage from "../ZoomableImage";
 
 import frock1 from "../../assets/products/frocks/images/frock1.png";
 import frock2 from "../../assets/products/frocks/images/frock2.png";
