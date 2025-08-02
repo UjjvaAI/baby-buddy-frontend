@@ -93,7 +93,7 @@ const Checkout = () => {
       const { id: order_id, amount, currency } = result.data;
 
       const options = {
-        key: "rzp_test_QiKijVWMDejYPS",
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount,
         currency,
         name: "Baby Buddy Store",
