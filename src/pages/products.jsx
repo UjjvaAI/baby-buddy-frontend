@@ -59,23 +59,23 @@ const Products = () => {
       id: "cradle001",
       name: "baby cradle",
       category: "Cradles",
-      mrp: 9999,
-      price: 7999,
+      mrp: 11000,
+      price: 9999,
       slug: "cradle001",
       imageSlider: <CradleSlide />,
       colors: ["Pink", "White", "Sky Blue"],
-      sizes: ["0-18m"],
+      sizes: ["0-12m"],
     },
       {
       id: "cradle603",
       name: "cradle 603",
       category: "Cradles",
       mrp: 4000,
-      price: 2999,
+      price: 3200,
       slug: "cradle603",
       imageSlider: <Cradle603 />,
       colors: ["blue", "pink"],
-      sizes: ["0-18m"],
+      sizes: ["0-12m"],
     }, 
      
     {      
@@ -83,7 +83,7 @@ const Products = () => {
       name: "cradle 730",
       category: "Cradles",
       mrp: 4000,
-      price: 2999,
+      price: 3200,
       slug: "cradle730",
       imageSlider: <Cradle730 />, // Assuming Cradle603 is the component for cradle 730
       colors: ["blue", "pink"],
@@ -95,11 +95,11 @@ const Products = () => {
       name: "cradle cv1100",
       category: "Cradles",
       mrp: 4000,
-      price: 2999,
+      price: 3200,
       slug: "cradlecv1100",
       imageSlider: <Cradlecv1100 />,
       colors: ["blue", "pink"],
-      sizes: ["0-18m"],
+      sizes: ["0-12m"],
      // Assuming Cradle603 is the component
 
 
