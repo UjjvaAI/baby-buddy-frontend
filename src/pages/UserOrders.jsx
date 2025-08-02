@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { db, auth } from "../firebase";
-import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-const ADMIN_UID = "llBIqhEd4GW5ysxNxeOuXnbSAbc2";
-
-const AdminOrders = () => {
+const UserOrders = () => {
   const [orders, setOrders] = useState([]);
   const [userReady, setUserReady] = useState(false);
   const navigate = useNavigate();
@@ -14,62 +12,45 @@ const AdminOrders = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        alert("❌ Access denied - Not logged in");
-        navigate("/");
-        return;
-      }
-
-      if (user.uid !== ADMIN_UID) {
-        alert("❌ Access denied - Not admin");
-        navigate("/");
+        alert("❌ Please login to view your orders.");
+        navigate("/login");
         return;
       }
 
       setUserReady(true);
-      fetchOrders();
+      fetchOrders(user.uid);
     });
 
     return () => unsubscribe();
   }, [navigate]);
 
-  const fetchOrders = async () => {
+  const fetchOrders = async (uid) => {
     try {
-      const snapshot = await getDocs(collection(db, "orders"));
+      const ordersRef = collection(db, "orders");
+      const q = query(ordersRef, where("customer.uid", "==", uid));
+      const snapshot = await getDocs(q);
       const data = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setOrders(data);
     } catch (err) {
-      console.error("❌ Error fetching orders:", err);
-    }
-  };
-
-  const markAsDispatched = async (orderId) => {
-    try {
-      const orderRef = doc(db, "orders", orderId);
-      await updateDoc(orderRef, { status: "Dispatched" });
-      alert("✅ Order marked as dispatched!");
-      fetchOrders(); // Refresh list
-    } catch (err) {
-      console.error("❌ Failed to update status:", err.message);
+      console.error("❌ Error fetching user orders:", err);
     }
   };
 
   if (!userReady) return null;
 
-  const pendingOrders = orders.filter((order) => order.status !== "Dispatched");
-
   return (
     <div className="p-4 sm:p-6 max-w-5xl mx-auto bg-gray-50 min-h-screen">
       <h2 className="text-2xl font-bold text-center text-pink-600 mb-8">
-        📋 Admin Panel - Pending Orders
+        🧾 My Orders History
       </h2>
 
-      {pendingOrders.length === 0 ? (
-        <p className="text-center text-gray-500">No pending orders.</p>
+      {orders.length === 0 ? (
+        <p className="text-center text-gray-500">No orders found.</p>
       ) : (
-        pendingOrders.map((order, index) => (
+        orders.map((order, index) => (
           <div
             key={order.id}
             className="border border-gray-300 bg-white rounded-2xl shadow-md p-6 mb-6"
@@ -86,9 +67,9 @@ const AdminOrders = () => {
             </div>
 
             <div className="space-y-1 text-sm text-gray-700">
-              <p><strong>👤 Name:</strong> {order.customer?.name || "N/A"}</p>
-              <p><strong>📞 WhatsApp:</strong> {order.customer?.whatsapp || "N/A"}</p>
-              <p><strong>🏠 Address:</strong> {order.customer?.address || "N/A"}</p>
+              <p>
+                <strong>🏠 Address:</strong> {order.customer?.address || "N/A"}
+              </p>
               {order.customer?.locationLink && (
                 <p>
                   <strong>📍 Location:</strong>{" "}
@@ -123,30 +104,21 @@ const AdminOrders = () => {
               💰 Total: ₹{order.total || 0}
             </div>
 
-            <div className="mt-6">
-              <button
-                onClick={() => markAsDispatched(order.id)}
-                className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg shadow"
+            <div className="mt-2 text-sm text-gray-500">
+              Status:{" "}
+              <span
+                className={`font-semibold ${
+                  order.status === "Dispatched" ? "text-green-600" : "text-yellow-600"
+                }`}
               >
-                🚚 Mark as Dispatched
-              </button>
+                {order.status || "Pending"}
+              </span>
             </div>
           </div>
         ))
-      )}
-
-      {pendingOrders.length > 0 && (
-        <div className="text-center mt-8">
-          <button
-            onClick={() => window.print()}
-            className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg shadow transition"
-          >
-            🖨️ Print All Orders
-          </button>
-        </div>
       )}
     </div>
   );
 };
 
-export default AdminOrders;
+export default UserOrders;
