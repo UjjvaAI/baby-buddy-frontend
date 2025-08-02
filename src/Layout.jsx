@@ -32,13 +32,10 @@ const Layout = () => {
 export default Layout;
 
 
-
-// git add . && git commit -m "🚀 Update: Production deployment changes" && git push origin main
-//Command Part	Explanation
-// git add .	Adds all modified files in the current repo
-// &&	Executes next command only if previous succeeds
-// git commit -m "your message"	Commits with a custom message
-//  && git push origin main	Pushes changes to main branch on GitHub
+// git status git add .git commit -m "Modified files update" git push
 
 
-// git add . && git commit -m "your-message" && git push
+
+// git add -u
+// git commit -m "Modified files update"
+//git push
