@@ -35,8 +35,8 @@ const productData = {
   cradle001: {
     id: "cradle001",
     name: "Baby Cradle",
-    mrp: 9999,
-    price: 7999,
+    mrp: 11000,
+    price: 9999,
     description: ["Comfortable cradle for your baby with adjustable height."],
     colors: ["Pink", "Sky Blue"],
     sizes: ["0-18m"],
@@ -47,15 +47,15 @@ const productData = {
     id: "cradle603",
     name: "Cradle 603",
     mrp: 4000,
-    price: 2999,
+    price: 3200,
     description: [
     { title: "Soft Swing & Lock", content: "Calm your baby with safe locking." },
     { title: "Mosquito Net", content: "Removable net for full protection." },
     { title: "Sturdy & Safe", content: "Strong, chemical-free, ASTM certified." },
     { title: "Movable", content: "4 wheels with secure brakes." },
-    { title: "Large Storage", content: "Basket for clothes & toys." },
+    { title: "Large Storage", content: "Storage for clothes & toys." },
     { title: "Easy Clean", content: "Handwash only. Spot-clean frame." },
-    { title: "Age", content: "0-12 months | Weight: up to 15 kg | Colour: Blue" }
+    { title: "Age", content: "0-12 months | Weight: up to 15 kg | Colour: Blue and Pink available" }
   ],
     colors: ["Blue", "Pink"],
     sizes: ["0-12m"],
@@ -66,15 +66,14 @@ const productData = {
     id: "cradle730",
     name: "Cradle 730",
     mrp: 4000,
-    price: 3999,
+    price: 3200,
     description:  [
-    { title: "Soft Swing & Lock", content: "Calm your baby with safe locking." },
+    
     { title: "Mosquito Net", content: "Removable net for full protection." },
     { title: "Sturdy & Safe", content: "Strong, chemical-free, ASTM certified." },
     { title: "Movable", content: "4 wheels with secure brakes." },
-    { title: "Large Storage", content: "Basket for clothes & toys." },
     { title: "Easy Clean", content: "Handwash only. Spot-clean frame." },
-    { title: "Age", content: "0-12 months | Weight: up to 15 kg | Colour: Blue" }
+    { title: "Age", content: "0-12 months | Weight: up to 15 kg | Colour: Blue and Pink available" }
   ],
     colors: ["Blue", "Pink"],
     sizes: ["0-12m"],
@@ -85,13 +84,11 @@ const productData = {
     id: "cradlecv1100",
     name: "Cradle CV1100",
     mrp: 4000,
-    price: 2999,
+    price: 3200,
     description:  [
-    { title: "Soft Swing & Lock", content: "Calm your baby with safe locking." },
     { title: "Mosquito Net", content: "Removable net for full protection." },
     { title: "Sturdy & Safe", content: "Strong, chemical-free, ASTM certified." },
     { title: "Movable", content: "4 wheels with secure brakes." },
-    { title: "Large Storage", content: "Basket for clothes & toys." },
     { title: "Easy Clean", content: "Handwash only. Spot-clean frame." },
     { title: "Age", content: "0-12 months | Weight: up to 15 kg | Colour: Blue" }
   ],
