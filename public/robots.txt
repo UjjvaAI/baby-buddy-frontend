@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://baby-buddy-frontend.onrender.com/sitemap.xml
