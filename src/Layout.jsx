@@ -1,13 +1,23 @@
 // src/Layout.jsx
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom"; // ✅ added useLocation
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import FestivalBanner from "./components/FestivalBanner";
 
-const Layout = () => {
+const BANNER = {
+  desktop: "/banners/raksha-desktop-nocrop.jpg",
+  tablet: "/banners/raksha-tablet-nocrop.jpg",
+  mobile: "/banners/raksha-mobile.jpg",
+};
+
+export default function Layout() {
+  const { pathname } = useLocation();
+  const showOnHomeOnly = true; // set false to show on all pages
+  const shouldShowBanner = showOnHomeOnly ? pathname === "/" : true;
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 text-black">
-      
       {/* Sticky Marquee + Navbar */}
       <header className="sticky top-0 z-50 mt-0">
         <div className="bg-black">
@@ -18,6 +28,16 @@ const Layout = () => {
         <Navbar />
       </header>
 
+      {/* ✅ Banner shows below navbar */}
+      {shouldShowBanner && (
+        <div className="w-full">
+          <FestivalBanner
+            images={BANNER}
+            alt="Happy Raksha Bandhan from Baby Buddy!"
+          />
+        </div>
+      )}
+
       {/* Main Content */}
       <main className="flex-grow">
         <Outlet />
@@ -27,15 +47,4 @@ const Layout = () => {
       <Footer />
     </div>
   );
-};
-
-export default Layout;
-
-
-// git status git add .git commit -m "Modified files update" git push
-
-
-
-// git add -u
-// git commit -m "Modified files update"
-//git push
+}

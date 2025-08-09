@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -14,7 +14,6 @@ import OrderHistory from "./pages/OrderHistory";
 import UserDetails from "./pages/UserDetails";
 import ThankYou from "./pages/ThankYou";
 import AdminOrders from "./pages/AdminOrders";
-import { Navigate } from "react-router-dom";
 import EmailLinkSignIn from "./pages/EmailLinkSignIn";
 import FinishSignIn from "./pages/finishSignIn";
 import ContactUs from "./pages/ContactUs";
@@ -24,36 +23,32 @@ import RefundPolicy from "./pages/RefundPolicy";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import UserOrders from "./pages/UserOrders";
 
-
-
-
-
-
-
- const user = JSON.parse(localStorage.getItem("user"));
+const ADMIN_UID = "llBIqhEd4GW5ysxNxeOuXnbSAbc2";
+const user = JSON.parse(localStorage.getItem("user"));
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="contact" element={<ContactUs />} />
+        {/* Public routes */}
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
+        <Route path="contact" element={<ContactUs />} />
         <Route path="cart" element={<CartPage />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="product/:slug" element={<ProductDetail />} />
-        <Route path="/user-details" element={<UserDetails />} />
-        <Route path="/thank-you" element={<ThankYou />} />
-        <Route path="/admin/orders" element={<AdminOrders />} />
-         <Route path="/" element={<EmailLinkSignIn />} />
-        <Route path="/finishSignIn" element={<FinishSignIn />} />
-  <Route path="shipping-policy" element={<ShippingPolicy />} />
-  <Route path="terms" element={<TermsAndConditions />} />
-  <Route path="refund-policy" element={<RefundPolicy />} />
-  <Route path="privacy-policy" element={<PrivacyPolicy />} />
-    <Route path="/my-orders" element={<UserOrders />} />   
-       
-        {/* ✅ Protected routes */}
+        <Route path="thank-you" element={<ThankYou />} />
+        <Route path="shipping-policy" element={<ShippingPolicy />} />
+        <Route path="terms" element={<TermsAndConditions />} />
+        <Route path="refund-policy" element={<RefundPolicy />} />
+        <Route path="privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="my-orders" element={<UserOrders />} />
+
+        {/* Email sign-in */}
+        <Route path="email-link-signin" element={<EmailLinkSignIn />} />
+        <Route path="finish-signin" element={<FinishSignIn />} />
+
+        {/* Protected routes */}
         <Route
           path="profile"
           element={
@@ -63,14 +58,13 @@ const App = () => {
           }
         />
         <Route
-  path="/user-details"
-  element={
-    <PrivateRoute>
-      <UserDetails />
-    </PrivateRoute>
-  }
-/>
-
+          path="user-details"
+          element={
+            <PrivateRoute>
+              <UserDetails />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="orders"
           element={
@@ -95,18 +89,18 @@ const App = () => {
             </PrivateRoute>
           }
         />
-       
 
-<Route
-  path="/admin/orders"
-  element={
-    user?.uid === "llBIqhEd4GW5ysxNxeOuXnbSAbc2" ? (
-      <AdminOrders />
-    ) : (
-      <Navigate to="/" />
-    )
-  }
-/>
+        {/* Admin protected route */}
+        <Route
+          path="admin/orders"
+          element={
+            user?.uid === ADMIN_UID ? (
+              <AdminOrders />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
       </Route>
     </Routes>
   );

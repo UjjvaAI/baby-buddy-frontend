@@ -51,7 +51,7 @@ const productData = {
     description: [
     { title: "Soft Swing & Lock", content: "Calm your baby with safe locking." },
     { title: "Mosquito Net", content: "Removable net for full protection." },
-    { title: "Sturdy & Safe", content: "Strong, chemical-free, ASTM certified." },
+    { title: "Sturdy & Safe", content: "Strong, chemical-free" },
     { title: "Movable", content: "4 wheels with secure brakes." },
     { title: "Large Storage", content: "Storage for clothes & toys." },
     { title: "Easy Clean", content: "Handwash only. Spot-clean frame." },
@@ -70,7 +70,7 @@ const productData = {
     description:  [
     
     { title: "Mosquito Net", content: "Removable net for full protection." },
-    { title: "Sturdy & Safe", content: "Strong, chemical-free, ASTM certified." },
+    { title: "Sturdy & Safe", content: "Strong, chemical-free" },
     { title: "Movable", content: "4 wheels with secure brakes." },
     { title: "Easy Clean", content: "Handwash only. Spot-clean frame." },
     { title: "Age", content: "0-12 months | Weight: up to 15 kg | Colour: Blue and Pink available" }
@@ -87,7 +87,7 @@ const productData = {
     price: 3200,
     description:  [
     { title: "Mosquito Net", content: "Removable net for full protection." },
-    { title: "Sturdy & Safe", content: "Strong, chemical-free, ASTM certified." },
+    { title: "Sturdy & Safe", content: "Strong, chemical-free" },
     { title: "Movable", content: "4 wheels with secure brakes." },
     { title: "Easy Clean", content: "Handwash only. Spot-clean frame." },
     { title: "Age", content: "0-12 months | Weight: up to 15 kg | Colour: Blue" }
