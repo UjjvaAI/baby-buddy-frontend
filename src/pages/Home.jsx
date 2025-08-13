@@ -5,10 +5,10 @@ import FestivalBanner from "@/components/FestivalBanner";
 
 const BANNERS = {
   rakshabandhan: {
-    desktop: "/banners/raksha-desktop.jpg",
-    tablet: "/banners/raksha-tablet.jpg",
-    mobile: "/banners/raksha-mobile.jpg",
-    alt: "Happy Raksha Bandhan — Baby Buddy wishes all customers love & joy!",
+    desktop: "/banners/main-desktop.jpg",
+    tablet: "/banners/main-tablet.jpg",
+    mobile: "/banners/main-mobile.jpg",
+    alt: "Happy Diwali — Baby Buddy wishes all customers love & joy!",
   },
   default: {
     desktop: "/banners/default-desktop.jpg",
