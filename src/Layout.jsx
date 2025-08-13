@@ -6,9 +6,9 @@ import Footer from "./components/Footer";
 import FestivalBanner from "./components/FestivalBanner";
 
 const BANNER = {
-  desktop: "/banners/raksha-desktop-nocrop.jpg",
-  tablet: "/banners/raksha-tablet-nocrop.jpg",
-  mobile: "/banners/raksha-mobile.jpg",
+  desktop: "/banners/main-desktop.jpg",
+  tablet: "/banners/main-tablet.jpg",
+  mobile: "/banners/main-mobile.jpg",
 };
 
 export default function Layout() {
@@ -33,7 +33,7 @@ export default function Layout() {
         <div className="w-full">
           <FestivalBanner
             images={BANNER}
-            alt="Happy Raksha Bandhan from Baby Buddy!"
+            alt="Happy Diwali from Baby Buddy!"
           />
         </div>
       )}
